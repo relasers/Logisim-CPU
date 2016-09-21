@@ -1,0 +1,99 @@
+S = 0; // ff번지
+C = 10; // fe번지
+D = 1; // fd 번지
+T = 0; // fc 번지
+
+00 NOP
+10 NOT
+20 SHL
+30 SHR
+40 JMP
+50 BZ
+60 BNZ
+70 
+80 LDA
+90 ADD
+a0 SUB
+b0 AND
+c0 OR
+d0 XOR
+e0 
+f0 STR
+
+
+
+00 LDA S ff
+02 ADD C fe
+04 STR S ff
+06 NOP 0
+
+08 LDA C fe
+0a SUB D fd
+0c BZ 0c
+0e NOP 0
+
+10 LDA C fe
+12 SUB D fd
+14 STR C fe
+16 NOP 0
+
+18 LDA S ff
+1a ADD C fe
+1c STR S ff 
+1e JMP 08
+
+
+
+
+00 LDA S ff
+02 ADD C fe
+04 STR S ff
+06 NOP 0
+
+08 LDA C fe
+0a SUB D fd
+0c BZ 0c
+0e STR C fe
+
+10 LDA S ff
+12 ADD C fe
+14 STR S ff 
+16 JMP 08
+
+/////////////////////////
+LDA addr ff
+ADD addr fe
+STR addr ff
+NOP 00
+
+LDA addr fe
+SUB addr fd
+BZ addr 0c
+STR addr fe
+
+LDA addr ff
+ADD addr fe
+STR addr ff 
+JMP addr 08
+
+fd 01 // D
+fe 0a // C
+ff 00 // S
+////////////////////////////
+
+
+
+
+00 LDA S ff
+02 ADD C fe
+04 STR S ff
+06 LDA C fe
+
+08 SUB D fd
+0a BZ 0c
+0c STR C fe
+0e LDA S ff
+
+10 ADD C fe
+12 STR S ff 
+14 JMP 08
